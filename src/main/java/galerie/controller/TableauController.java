@@ -1,5 +1,6 @@
 package galerie.controller;
 
+import galerie.dao.ArtisteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import galerie.dao.TableauRepository;
+import galerie.entity.Artiste;
 import galerie.entity.Tableau;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +22,8 @@ public class TableauController {
     
     @Autowired
     private TableauRepository dao;
+    @Autowired
+    private ArtisteRepository artisteDAO;
     
     @GetMapping(path = "show")
     public String afficheTousLesTableaux(Model model) {
@@ -28,7 +32,8 @@ public class TableauController {
     }
     
     @GetMapping(path = "add")
-    public String montreLeFormulairePourAjout(@ModelAttribute("tableau") Tableau tableau) {
+    public String montreLeFormulairePourAjout(@ModelAttribute("tableau") Tableau tableau, Model model) {
+        model.addAttribute("artistes", artisteDAO.findAll());
         return "formulaireTableau";
     }
     

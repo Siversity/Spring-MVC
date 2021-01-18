@@ -18,11 +18,17 @@
             </div>
             <div class="column">
 		<label for="auteur"> Auteur: </label>
+                    <select id="auteur" name="auteur">
+                        <option value="0"> Auteur inconnu </option>
+                        <option th:each="a: ${artistes}" th:value="${aStat.count}" th:text="${a.nom}"></option>
+                    </select>
+                <!--
 		<input type="text" th:field="*{auteur}" placeholder="Auteur du tableau"/>
+                -->
                 <label for="support"> Support: </label>
-                <input type="text" th:field="*{support}" placeholder="Support du tableau, ex: Huile sur toile"/>
+                    <input type="text" th:field="*{support}" placeholder="Support du tableau, ex: Huile sur toile"/>
                 <label for="dimension"> Dimensions: </label>
-                <input type="text" th:field="*{dimension}" placeholder="Diemnsions du tableau, ex: 1m x 2m"/>
+                    <input type="text" th:field="*{dimension}" placeholder="Diemnsions du tableau, ex: 1m x 2m"/>
             </div>
         </form>
         <hr/>
