@@ -44,5 +44,17 @@ public class TableauController {
         redirectInfo.addFlashAttribute("message", message);
         return "redirect:show";
     }
+    
+    @GetMapping(path = "delete")
+    public String supprimeUnTableauPuisMontreLaListe(@RequestParam("id") Tableau tableau, RedirectAttributes redirectInfo) {
+        String message = "La galerie '" + tableau.getTitre() + "' a bien été supprimée";
+        try {
+            dao.delete(tableau);
+        } catch (Exception e) {
+            message = "Erreur : Impossible de supprimer le tableau '" + tableau.getTitre() +"'";
+        }
+        redirectInfo.addFlashAttribute("message", message);
+        return "redirect:show";
+    }
 
 }
