@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Exemple de template</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../static/css/style.css" />
+</head>
+
+<body>
+	<h1> Les tableaux </h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th> Titre </th>
+                        <th> Support </th>
+                        <th> Dimensions </th>
+                        <th> Auteur </th>
+                        <th> Action </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="t: ${tableaux}">
+                        <td th:text="${t.titre}"> Titre du tableau </td>
+                        <td th:text="${t.support}"> Support du tableau </td>
+                        <td th:text="${t.dimension}"> Dimensions du tableau </td>
+                        <td>
+                            <span th:each="a: ${t.auteur}">
+                                <span th:if="${t.auteur != null}" th:text="${a.nom}"></span>
+                            </span>
+                            <span th:unless="${t.auteur != null}"> Artiste inconnu </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+</body>
+
+</html>
