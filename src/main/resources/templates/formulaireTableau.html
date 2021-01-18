@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Exemple de template</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../static/css/style.css" />
+</head>
+
+<body>
+	<h1> Ajouter un tableau </h1>
+        <form th:object="${tableau}" method="POST" th:action="@{save}">
+            <div class="column">
+		<label for="titre"> Titre: </label>
+                    <input type="text" th:field="*{titre}" placeholder="Titre du tableau"/>
+                        <hr/>
+                    <input type="submit" value="Enregistrer" /> <input type="reset" value="Réinitialiser" />
+            </div>
+            <div class="column">
+		<label for="auteur"> Auteur: </label>
+		<input type="text" th:field="*{auteur}" placeholder="Auteur du tableau"/>
+                <label for="support"> Support: </label>
+                <input type="text" th:field="*{support}" placeholder="Support du tableau, ex: Huile sur toile"/>
+                <label for="dimension"> Dimensions: </label>
+                <input type="text" th:field="*{dimension}" placeholder="Diemnsions du tableau, ex: 1m x 2m"/>
+            </div>
+        </form>
+        <hr/>
+            <a th:href="@{/}" href="../static/index.html">Retour au menu</a>
+	<hr/>
+</body>
+
+</html>

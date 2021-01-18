@@ -9,12 +9,14 @@
 
 <body>
 	<h1> Les tableaux </h1>
+        <a th:href="@{add}" href="formulaireTableau.html"> Ajouter un tableau </a>
+        <h3 th:text="${message}"> Message de succès ou d'erreur </h3>	
             <table>
                 <thead>
                     <tr>
                         <th> Titre </th>
                         <th> Support </th>
-                        <th> Dimensions </th>
+                        <th> Dimension </th>
                         <th> Auteur </th>
                         <th> Action </th>
                     </tr>

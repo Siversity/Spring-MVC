@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import galerie.dao.TableauRepository;
-import galerie.entity.Galerie;
+import galerie.entity.Tableau;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -27,4 +27,9 @@ public class TableauController {
         return "afficheTableaux";
     }
     
+    @GetMapping(path = "add")
+    public String montreLeFormulairePourAjout(@ModelAttribute("tableau") Tableau tableau) {
+        return "formulaireTableau";
+    }
+
 }
