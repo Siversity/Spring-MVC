@@ -21,7 +21,7 @@ public class TableauController {
     @Autowired
     private TableauRepository dao;
     
-    @GetMapping(path = "/show")
+    @GetMapping(path = "show")
     public String afficheTousLesTableaux(Model model) {
         model.addAttribute("tableaux", dao.findAll());
         return "afficheTableaux";
@@ -30,6 +30,19 @@ public class TableauController {
     @GetMapping(path = "add")
     public String montreLeFormulairePourAjout(@ModelAttribute("tableau") Tableau tableau) {
         return "formulaireTableau";
+    }
+    
+    @PostMapping(path = "save")
+    public String ajouteLeTableauPuisMontreLaListe(Tableau tableau, RedirectAttributes redirectInfo) {
+        String message;
+        try {
+            dao.save(tableau);
+            message = "Le tableau '" + tableau.getTitre() + "' a été correctement enregistré";
+        } catch (Exception e) {
+            message = "Erreur : Le tableau '" + tableau.getTitre() + "' n'a pas pu être enregistré";
+        }
+        redirectInfo.addFlashAttribute("message", message);
+        return "redirect:show";
     }
 
 }
