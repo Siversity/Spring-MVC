@@ -19,12 +19,9 @@
             <div class="column">
 		<label for="auteur"> Auteur: </label>
                     <select id="auteur" name="auteur">
-                        <option value="0"> Auteur inconnu </option>
+                        <option value="0"> Artiste inconnu </option>
                         <option th:each="a: ${artistes}" th:value="${aStat.count}" th:text="${a.nom}"></option>
                     </select>
-                <!--
-		<input type="text" th:field="*{auteur}" placeholder="Auteur du tableau"/>
-                -->
                 <label for="support"> Support: </label>
                     <input type="text" th:field="*{support}" placeholder="Support du tableau, ex: Huile sur toile"/>
                 <label for="dimension"> Dimensions: </label>

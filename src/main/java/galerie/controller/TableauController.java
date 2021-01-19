@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import galerie.dao.TableauRepository;
-import galerie.entity.Artiste;
 import galerie.entity.Tableau;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -21,13 +19,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class TableauController {
     
     @Autowired
-    private TableauRepository dao;
+    private TableauRepository tableauDAO;
     @Autowired
     private ArtisteRepository artisteDAO;
     
     @GetMapping(path = "show")
     public String afficheTousLesTableaux(Model model) {
-        model.addAttribute("tableaux", dao.findAll());
+        model.addAttribute("tableaux", tableauDAO.findAll());
         return "afficheTableaux";
     }
     
@@ -41,7 +39,7 @@ public class TableauController {
     public String ajouteLeTableauPuisMontreLaListe(Tableau tableau, RedirectAttributes redirectInfo) {
         String message;
         try {
-            dao.save(tableau);
+            tableauDAO.save(tableau);
             message = "Le tableau '" + tableau.getTitre() + "' a été correctement enregistré";
         } catch (Exception e) {
             message = "Erreur : Le tableau '" + tableau.getTitre() + "' n'a pas pu être enregistré";
@@ -54,7 +52,7 @@ public class TableauController {
     public String supprimeUnTableauPuisMontreLaListe(@RequestParam("id") Tableau tableau, RedirectAttributes redirectInfo) {
         String message = "La galerie '" + tableau.getTitre() + "' a bien été supprimée";
         try {
-            dao.delete(tableau);
+            tableauDAO.delete(tableau);
         } catch (Exception e) {
             message = "Erreur : Impossible de supprimer le tableau '" + tableau.getTitre() +"'";
         }
